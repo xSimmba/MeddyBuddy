@@ -1,7 +1,14 @@
+
+
+
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponse
-from .forms import LoginForm, UserRegistrationForm
+from .forms import LoginForm, UserRegistrationForm, UserEditForm
+from .models import Profile
+from django.contrib.auth.models import User
+from django.contrib import messages
+from django.forms.models import model_to_dict
 
 
 def user_login(request):
@@ -37,3 +44,18 @@ def register(request):
     else:
         form = UserRegistrationForm()
     return render(request, "registeration/register.html", {"user_form": form})
+
+
+def profile(request):
+    profile = get_object_or_404(Profile, user=request.user)
+    user = get_object_or_404(User, username=request.user)
+    if request.method == "POST":
+        user_form = UserEditForm(instance=request.user, data=request.POST)
+        if user_form.is_valid():
+            user_form.save()
+            messages.success(request, "Profile updated successfully")
+        else:
+            messages.error(request, "Error updating your profile")
+    else:
+        user_form = UserEditForm(initial=model_to_dict(user))
+    return render(request, "profile.html", {"user_form": user_form, "profile": profile})

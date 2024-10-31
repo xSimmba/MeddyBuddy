@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+<form method="post">
+    <h2>MeddyBuddy Register</h2>
+    {% csrf_token %}
+    {{ user_form.as_p }}
+    <button id="login-button" type="submit"> Register </button>
+</form>
+
+{% endblock content %}

@@ -1,0 +1,22 @@
+{% extends "base.html" %} 
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/login.css' %}">
+
+<div id="login">
+  
+  <form method="post">
+    <h2>MeddyBuddy</h2>
+    
+    {% csrf_token %}
+    {{ form.as_p }}
+    <a id="password-reset" href="{% url "password_reset" %}">Forgot your password?</a>
+    <input id="login-button" type="submit" value="Login" />
+    {% if not request.user.is_authenticated %}
+    <button id="login-button"><a href="{% url 'accounts:register' %}">Get started</a></button>
+    {% endif %} 
+  </form>
+  
+
+</div>
+{% endblock content %}
