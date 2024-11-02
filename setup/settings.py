@@ -26,15 +26,15 @@ LOGOUT_REDIRECT_URL = "login"
 # Application definition
 
 INSTALLED_APPS = [
-    "medication",
-    "timeline",
-    "users",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "users",
+    "medication",
+    "timeline",
 ]
 
 MIDDLEWARE = [
