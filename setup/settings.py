@@ -1,5 +1,6 @@
 import os
 from pathlib import Path
+from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -19,7 +20,7 @@ ALLOWED_HOSTS = []
 
 # Local settings
 LOGIN_URL = "login"
-LOGIN_REDIRECT_URL = "mainapp:home"
+LOGIN_REDIRECT_URL = "home"
 LOGOUT_REDIRECT_URL = "login"
 
 # Application definition
@@ -68,16 +69,22 @@ WSGI_APPLICATION = "setup.wsgi.application"
 
 
 # Database
-# https://docs.djangoproject.com/en/5.1/ref/settings/#databases
+# https://docs.djangoproject.com/en/5.1/ref/settings/#
+
+POSTGRES_DB = config("POSTGRES_DB", default="db", cast=str)
+POSTGRES_HOST = config("POSTGRES_HOST", default="database", cast=str)
+POSTGRES_PASSWORD = config("POSTGRES_PASSWORD", default="password", cast=str)
+POSTGRES_PORT = config("POSTGRES_PORT", default=5432, cast=int)
+POSTGRES_USER = config("POSTGRES_USER", default="user", cast=str)
 
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": 'postgres',
-        "USER": 'user' ,
-        "PASSWORD": 'password',
-        "HOST": 'db' ,
-        "PORT": 5432
+        "NAME": POSTGRES_DB,
+        "USER": POSTGRES_USER,
+        "PASSWORD": POSTGRES_PASSWORD,
+        "HOST": POSTGRES_HOST,
+        "PORT": POSTGRES_PORT,
     }
 }
 
