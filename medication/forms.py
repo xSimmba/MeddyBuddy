@@ -1,10 +1,10 @@
 from django import forms
-from models import Medication
+from .models import Medication
 
 class FormAddMedication(forms.ModelForm):
     class Meta:
         model = Medication
-        fields = ['name', 'dosage', 'instructions']
+        fields = ['name', 'dosage', 'instructions', 'user']
 
     def __init__(self, *args, **kwargs):
         self.request = kwargs.pop('request', None)
