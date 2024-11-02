@@ -13,7 +13,7 @@
     <a id="password-reset" href="{% url "password_reset" %}">Forgot your password?</a>
     <input id="login-button" type="submit" value="Login" />
     {% if not request.user.is_authenticated %}
-    <button id="login-button"><a href="{% url 'accounts:register' %}">Get started</a></button>
+    <button id="login-button"><a href="{% url 'users:register' %}">Get started</a></button>
     {% endif %} 
   </form>
   
