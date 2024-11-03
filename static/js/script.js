@@ -1,4 +1,3 @@
-
     let EditImg = document.querySelector(".edit_meds_img");
     EditImg.onmouseover = () => {
         EditImg.src = "/static/media/edit_meds_houver.svg";
@@ -27,4 +26,5 @@
         ViewImg.src = "/static/media/view_meds.svg";
         console.log("hover")
     };
+
 
