@@ -2,6 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    {% load static %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}My Django Project{% endblock %}</title>
@@ -12,20 +13,20 @@
     <!-- Navbar with Settings and Profile -->
     <nav class="navbar">
         <div class="nav-left">
-            <a href="{% url 'settings' %}" class="nav-button settings-btn">⚙️ Settings</a>
+            
         </div>
         
         <div class="navbar-title">
-            <a href="{% url 'home' %}">My App</a>
+            
         </div>
         
         <div class="nav-right">
             {% if user.is_authenticated %}
-                <a href="{% url 'profile' %}">
-                    <img src="{% static 'images/profile.jpg' %}" alt="Profile" class="profile-icon">
+            
+                    
                 </a>
             {% else %}
-                <a href="{% url 'login' %}" class="nav-button">Login</a>
+                
             {% endif %}
         </div>
     </nav>

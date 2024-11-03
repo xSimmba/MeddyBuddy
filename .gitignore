@@ -1,0 +1,8 @@
+./medication/__pycache__/
+./users/__pycache__/
+./medication/migrations/
+./users/migrations/
+./timeline/__pycache__/
+./timeline/migrations/
+./setup/__pycache__/
+
