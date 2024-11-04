@@ -45,8 +45,8 @@
         <p> &copy; 2024 MeddyBuddy</p>
     </footer>
     {% else %}
-    <a href="{% url 'login'%}">Login</a>
-    <a href="{% url 'register'%}">Create account</a>
+    <a href="{% url 'users:login'%}">Login</a>
+    <a href="{% url 'users:register'%}">Create account</a>
     {% endif %}
     <script src="{% static 'js/script.js' %}"></script>
 </body>

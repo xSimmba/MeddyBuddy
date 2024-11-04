@@ -1,5 +1,15 @@
 {% block content %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/landing-page/style.css' %}">
+<script src="{% static 'js/landing-page/script.js' %}"></script>
 
+<div class="navbar">
+    <img class="nav-logo" src="{% static "media/landing-page/logo.png" %}">
+    <ul>
+        <li><a class="login" href="{% url "users:login"%}">Login</a>
+        <li><a class="register" href="{% url "users:register"%}">Register</a></li>
+    </ul>
+</div>
 <div class="home">
     <h1>Welcome to MeddyBuddy</h1>
     <p>MeddyBuddy is a medication management system that helps you keep track of your medications and reminds you when to take them.</p>
@@ -9,7 +19,6 @@
         <li>Add or remove medications</li>
         <li>Set reminders for when to take your medications</li>
     </ul>
-    <p>Get started by <a href="{% url 'users:register' %}">creating an account</a> or <a href="{% url 'users:login' %}">logging in</a>.</p>
 </div>
 
 {% endblock content %}
