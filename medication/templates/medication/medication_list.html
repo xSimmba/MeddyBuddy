@@ -1,10 +1,16 @@
 {% extends 'base.html' %}
 {% block title %}Medication List{% endblock %}
+{% load static %}
 {% block content %}
 {% for medication in medications %}
-<tr>
-    <td>Name{{ medication.name }}</td>
-    <td>Dosage{{ medication.dosage }}</td>
-</tr>
+<div class="meds-container">
+    <div class="meds-box">
+        <img  src="{% static 'media/icon_meds.svg' %}" alt="icon Meds" >
+        <tr>
+            <td>Name {{ medication.name }}</td>
+            <td>Dosage {{ medication.dosage }}</td>
+        </tr>
+    </div>
+</div>
 {% endfor %}
 {% endblock %}
