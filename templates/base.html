@@ -22,8 +22,8 @@
                     <img class="edit_meds_img"src="{% static 'media/edit_meds.svg' %}" alt="Add/Remove Meds">
                 </a>
             {% else %}
-                <a href="{% url 'login'%}">Login</a>
-                <a href="{% url 'register'%}">Create account</a>
+                <a href="{% url 'users:login'%}">Login</a>
+                <a href="{% url 'users:register'%}">Create account</a>
             {% endif %}
     </nav>
 </header>  
@@ -34,14 +34,20 @@
     </div>
 
     {% comment %} footer {% endcomment %}
+    {% if user.is_authenticated %}
     <footer class="footer">
         <div class="images-footer">
             <a><img src="{% static 'media/people_meddybuddy.svg' %}" alt="Family"></a>
 
             <a><img src="{% static 'media/SOS_meddybuddy.svg' %}" alt="SOS"></a>
         </div>
+        <a href="{% url 'users:logout'%}">Logout</a>
         <p> &copy; 2024 MeddyBuddy</p>
     </footer>
+    {% else %}
+    <a href="{% url 'login'%}">Login</a>
+    <a href="{% url 'register'%}">Create account</a>
+    {% endif %}
     <script src="{% static 'js/script.js' %}"></script>
 </body>
 </html>

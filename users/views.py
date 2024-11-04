@@ -1,6 +1,3 @@
-
-
-
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponse
@@ -9,9 +6,13 @@ from .models import Profile
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.forms.models import model_to_dict
+from django.contrib.auth.decorators import login_required
 
+
+@login_required
 def home(request):
     return render(request, "home.html")
+
 
 def user_login(request):
     if request.method == "POST":
@@ -22,17 +23,17 @@ def user_login(request):
             if user is not None:
                 if user.is_active:
                     login(request, user)
-                    return(redirect("home"))
+                    return redirect("home")
             else:
                 return HttpResponse("Invalid login")
     else:
         form = LoginForm()
-    return render(request, "login.html", {"form": form})
+    return render(request, "registration/login.html", {"form": form})
 
 
 def user_logout(request):
     logout(request)
-    return render(request, "logout.html")
+    return render(request, "landing-page.html")
 
 
 def register(request):

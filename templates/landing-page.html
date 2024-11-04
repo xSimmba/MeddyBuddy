@@ -1,0 +1,17 @@
+{% block content %}
+
+<div class="home">
+    <h1>Welcome to MeddyBuddy</h1>
+    <p>MeddyBuddy is a medication management system that helps you keep track of your medications and reminds you when to take them.</p>
+    <p>With MeddyBuddy, you can:</p>
+    <ul>
+        <li>View your medications</li>
+        <li>Add or remove medications</li>
+        <li>Set reminders for when to take your medications</li>
+    </ul>
+    <p>Get started by <a href="{% url 'users:register' %}">creating an account</a> or <a href="{% url 'users:login' %}">logging in</a>.</p>
+</div>
+
+{% endblock content %}
+
+
