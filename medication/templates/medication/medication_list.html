@@ -1,10 +1,20 @@
 {% extends 'base.html' %}
 {% block title %}Medication List{% endblock %}
+{% load static %}
 {% block content %}
-{% for medication in medications %}
-<tr>
-    <td>Name{{ medication.name }}</td>
-    <td>Dosage{{ medication.dosage }}</td>
-</tr>
-{% endfor %}
+<div class="meds-main">
+    {% for medication in medications %}
+    <div class="meds-container">
+        <div class="meds-box">
+            <img class="icon-meds" src="{% static 'media/icon_meds.svg' %}" alt="icon Meds" >
+            <div class="meds-info">
+                <a>Name :{{ medication.name }}</a>
+                <a>Dosage :{{ medication.dosage }}</a>
+            </div>
+            <img class="pill" src="{% static 'media/green_pill.svg' %}" alt="Green Pill" >
+            <img class="pill" src="{% static 'media/red_pill.svg' %}" alt="Red Pill" >
+        </div>
+    </div>
+    {% endfor %}
+</div>
 {% endblock %}
