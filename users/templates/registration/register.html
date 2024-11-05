@@ -1,12 +1,34 @@
 {% extends "base.html" %}
 {% load static %}
 {% block content %}
+<link rel="stylesheet" href="{% static 'css/register.css' %}">
 
-<form method="post">
-    <h2>MeddyBuddy Register</h2>
-    {% csrf_token %}
-    {{ user_form.as_p }}
-    <button id="login-button" type="submit"> Register </button>
-</form>
+<div id="register">
+    <form method="post">
+        {% csrf_token %}
+
+        <div class="wrapper">
+
+            <button id="login-button" type="button" onclick="location.href='{% url 'users:login' %}'">Login</button>
+            <div class="input-box">
+                <input type="text" name="username" placeholder="Name" value="{{form.username.value}}" required>
+            </div>
+            <div class="input-box">
+                <input type="text" name="email" placeholder="Email" value="{{form.email.value}}" required>
+            </div>
+            <div class="input-box">
+                <input type="date" name="date_of_birth" placeholder="Date of birth" value="{{form.date_of_birth.value}}" required>
+            </div>            
+            <div class="input-box">
+                <input type="password" name="password" placeholder="Password" value="{{form.password1.value}}" required>
+            </div>
+            <div class="input-box">
+                <input type="password" name="password2" placeholder="Repeat your password" value="{{form.password2.value}}" required>
+            </div>
+            <button id="register-button" type="submit"> Register </button>
+        </div>
+    </form>
+
+</div>
 
 {% endblock content %}

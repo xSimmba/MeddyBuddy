@@ -1,21 +1,34 @@
-{% comment %} {% extends "base.html" %}  {% endcomment %}
+{% extends "base.html" %}
 {% load static %}
 {% block content %}
 <link rel="stylesheet" href="{% static 'css/login.css' %}">
 
 <div id="login">
   
-  <form method="post">
-    <h2>MeddyBuddy</h2>
-    
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input id="login-button" type="submit" value="Login" />
-    {% if not request.user.is_authenticated %}
-    <button id="login-button"><a href="{% url 'users:register' %}">Get started</a></button>
-    {% endif %} 
-  </form>
-  
+    <form method="post">
 
+    <div class="header">
+      <img class="profile_img" src="{% static 'media/profile.svg' %}" alt="Profile">
+      <h2>Welcome to MeddyBuddy !</h2>
+    </div>
+    {% csrf_token %}
+    
+    <div class="wrapper">
+      <form method="post">
+          <div class="input-box">
+              <input type="text" name="username" placeholder="Name/Email" required>
+          </div>
+          <div class="input-box">
+              <input type="password" name="password" placeholder="Password" required>
+          </div>
+          <div class="button-container">
+              <button id="register-button" type="button" onclick="location.href='{% url 'users:register' %}'">Register</button>
+              <input id="login-button" type="submit" value="Login" />
+          </div>
+      </form>
+  </div>
+  
+    </form>
+  
 </div>
 {% endblock content %}
