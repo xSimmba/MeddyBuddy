@@ -23,5 +23,4 @@ window.onload = () => {
    register.onmouseout = () => {
     register.style = "color: #000";
    }
-   
 }
