@@ -9,9 +9,8 @@ from django.forms.models import model_to_dict
 from django.contrib.auth.decorators import login_required
 
 
-@login_required
 def home(request):
-    return render(request, "home.html")
+    return render(request, "landing-page.html")
 
 
 def user_login(request):
