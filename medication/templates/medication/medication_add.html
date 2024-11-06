@@ -10,9 +10,7 @@
         <form method="post" enctype="multipart/form-data">
             {% csrf_token %}
             {{ form.as_p }}
-            <button type="submit" class="button-add">
-                <a><img src="{% static 'media/add_meds.svg' %}" alt="add"></a>
-            </button>
+            <button type="submit"><img class="add-btn" src="{% static 'media/add_meds.svg' %}" alt="add"></button>
         </form>
     </div>
 </div>

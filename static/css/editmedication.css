@@ -52,21 +52,24 @@ input, textarea {
     margin-bottom: 10px;
 }
 
-.btn {
-    height: 40px;
-    display: inline-block;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
 
-.btn-primary {
-    background-color: #50E3C2;
-    color: #fff;
-}
 
+.btn-primary,
 .btn-secondary {
-    background-color: #ccc;
-    color: #333;
+    margin: 0 10px;
+    padding: 15px 30px; 
+    border-radius: 40px; 
+    border: 2px solid #50E3C2; 
+    background-color: #D9D9D9; 
+    cursor: pointer; 
+    font-size: 18px; 
+    color: #00796B; 
+    width: auto;
+}
+
+.btn-primary:hover,
+.btn-secondary:hover {
+    background-color: #50E3C2;
+    color: #00796B; 
+    border: 2px solid #00796B;
 }

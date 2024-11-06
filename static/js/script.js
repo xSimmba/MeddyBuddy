@@ -28,3 +28,12 @@
         console.log("hover")
     };
 
+    let AddImg = document.querySelector(".add-btn");
+    AddImg.onmouseover = () => {
+        AddImg.src = "/static/media/add_meds_over.svg";
+    };
+    AddImg.onmouseout = () => {
+        AddImg.src = "/static/media/add_meds.svg";
+        console.log("hover")
+    };
+
