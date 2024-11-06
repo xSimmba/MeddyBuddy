@@ -1,0 +1,53 @@
+.add-cont{
+    display: flex;
+    justify-content: center;
+    margin-top: 3%;
+}
+
+.container{
+    display:flex ;
+    text-align: center;
+    flex-direction: column;
+    height: auto;
+    width: fit-content;
+}
+
+h1{
+    margin-bottom: 2%;
+}
+
+#id_name {
+    border: 2px solid #00796B;
+    border-radius: 15px;
+}
+
+#id_dosage {
+    border: 2px solid #00796B;
+    border-radius: 15px;
+}
+
+#id_instructions {
+    border: 2px solid #00796B;
+    border-radius: 15px;
+}
+
+form {
+    width: 400px;
+    height: 350px;
+    padding: 20px;
+    outline: none;
+    background: none;
+    background-color: #D9D9D9;
+    border-radius: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+
+
+input, textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    margin-bottom: 10px;
+}

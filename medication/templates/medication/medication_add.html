@@ -1,9 +1,19 @@
 {% extends "base.html" %}
-{% block content %}
 
-<form method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Add the the medication</button>
-</form>
+
+{% block content %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/addmedication.css' %}">
+<div class="add-cont">
+    <div class="container">
+        <h1>Add Medication</h1>    
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="button-add">
+                <a><img src="{% static 'media/add_meds.svg' %}" alt="add"></a>
+            </button>
+        </form>
+    </div>
+</div>
 {% endblock %}
