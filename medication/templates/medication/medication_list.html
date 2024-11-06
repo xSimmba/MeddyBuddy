@@ -6,7 +6,7 @@
     {% for medication in medications %}
     <div class="meds-container">
         <div class="meds-box">
-            <img class="icon-meds" src="{% static 'media/icon_meds.svg' %}" alt="icon Meds" >
+            <a class="icon-meds" href="{% url 'medication_detail' medication.id %}"><img src="{% static 'media/icon_meds.svg' %}" alt="icon Meds" ></a>
             <div class="meds-info">
                 <a>Name :{{ medication.name }}</a>
                 <a>Dosage :{{ medication.dosage }}</a>

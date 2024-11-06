@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<div class="meds-detail-main">
+    <div class="meds-detail">
+        <img class="detail-icon" src="{% static "media/meds_detail_icon.svg" %}" alt="Detail Icon">
+        <p>Name:</p>
+        <a>{{ medication.name }}</a>
+        <p>Dosage:</p>
+        <a>{{ medication.dosage }}</a>
+        <p>Instructions:</p>
+        <a>{{ medication.instructions }}</a>
+        <div class="meds-detail-btn">
+            <a class ="edit-btn" href="{% url 'edit_medication' medication.id %}"><img src="{% static "media/edit_meds_btn.svg" %}" alt="Edit Button"></a>
+            <a class="delete-btn" href="{% url 'delete_medication' medication.id %}"><img src="{% static "media/delete_meds.svg" %}" alt="Delete Button"></a>
+        </div>
+    </div>
+</div>
+{% endblock %}

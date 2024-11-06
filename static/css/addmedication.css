@@ -33,7 +33,7 @@ h1{
 
 form {
     width: 400px;
-    height: 350px;
+    height: fit-content;
     padding: 20px;
     outline: none;
     background: none;
@@ -42,12 +42,20 @@ form {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
+form button {
+    border: none;
+    outline: none;
+    background: none;
+}
+
+.add-btn{
+    width: 150px;
+}
 
 
 input, textarea {
     width: 100%;
     padding: 10px;
-    border: 1px solid #ccc;
     border-radius: 3px;
     margin-bottom: 10px;
 }

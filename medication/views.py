@@ -1,8 +1,9 @@
 from django.shortcuts import get_object_or_404
 from .models import Medication
 from .forms import FormAddMedication , FormEditMedication
-from django.views.generic.edit import CreateView, DeleteView , UpdateView
-from django.views.generic.list import ListView
+from django.views.generic.edit import CreateView, DeleteView, UpdateView
+from django.views.generic.detail import DetailView
+from django.views.generic.list import ListView 
 from django.urls import reverse , reverse_lazy
 from django.http import Http404
 # Create your views here.
@@ -26,7 +27,7 @@ class AddMedication(CreateView):
         return super().form_valid(form)
     
     def get_success_url(self):
-        return reverse('home')
+        return reverse('medication_list')
     
 class MedicationListView(ListView):
     model = Medication
@@ -59,3 +60,11 @@ class EditMedication(UpdateView):
 
     def get_success_url(self):
         return reverse('medication_list') 
+
+class DetailMedication(DetailView):
+    model = Medication
+    template_name = 'medication/medication_detail.html'
+    context_object_name = 'medication'
+
+    def get_queryset(self):
+        return Medication.objects.filter(user=self.request.user)
