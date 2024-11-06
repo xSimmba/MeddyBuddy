@@ -24,4 +24,3 @@ class FormEditMedication(forms.ModelForm):
         widgets = {
             'instructions': forms.Textarea(attrs={'rows': 4}),  
         }
-        

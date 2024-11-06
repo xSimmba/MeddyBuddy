@@ -49,15 +49,4 @@ def register(request):
 
 
 def profile(request):
-    profile = get_object_or_404(Profile, user=request.user)
-    user = get_object_or_404(User, username=request.user)
-    if request.method == "POST":
-        user_form = UserEditForm(instance=request.user, data=request.POST)
-        if user_form.is_valid():
-            user_form.save()
-            messages.success(request, "Profile updated successfully")
-        else:
-            messages.error(request, "Error updating your profile")
-    else:
-        user_form = UserEditForm(initial=model_to_dict(user))
-    return render(request, "profile.html", {"user_form": user_form, "profile": profile})
+    return render(request, "profile.html")

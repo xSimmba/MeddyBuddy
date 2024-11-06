@@ -2,6 +2,7 @@
 {% block title %}Medication List{% endblock %}
 {% load static %}
 {% block content %}
+<script src="{% static 'js/medication/script.js' %}"></script>
 <div class="meds-main">
     {% for medication in medications %}
     <div class="meds-container">
@@ -11,8 +12,8 @@
                 <a>Name :{{ medication.name }}</a>
                 <a>Dosage :{{ medication.dosage }}</a>
             </div>
-            <img class="pill" src="{% static 'media/green_pill.svg' %}" alt="Green Pill" >
-            <img class="pill" src="{% static 'media/red_pill.svg' %}" alt="Red Pill" >
+            <img id="green" class="pill" src="{% static 'media/green_pill.svg' %}" alt="Green Pill" >
+            <img id="red" class="pill" src="{% static 'media/red_pill.svg' %}" alt="Red Pill" >
         </div>
     </div>
     {% endfor %}

@@ -1,13 +1,14 @@
 {% extends "base.html" %}
 {% load static %}
 {% block content %}
-<link rel="stylesheet" href="{% static 'css/register.css' %}">
+<link rel="stylesheet" href="{% static 'css/account/register.css' %}">
 
 <div id="register">
     <form method="post">
         {% csrf_token %}
-
+        <img id="background" src={% static "media/login.svg"%}>
         <div class="wrapper">
+            <h1>Create an account</h1>
 
             <button id="login-button" type="button" onclick="location.href='{% url 'users:login' %}'">Login</button>
             <div class="input-box">
@@ -18,7 +19,9 @@
             </div>
             <div class="input-box">
                 <input type="date" name="date_of_birth" placeholder="Date of birth" value="{{form.date_of_birth.value}}" required>
-            </div>            
+            </div> 
+            <div class="input-box">
+                <input type="text" name="health_card" placeholder="Health Card" value="{{form.health_card.value}}" required>
             <div class="input-box">
                 <input type="password" name="password" placeholder="Password" value="{{form.password1.value}}" required>
             </div>

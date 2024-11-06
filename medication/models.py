@@ -1,9 +1,10 @@
 from django.db import models
 
+
 # Create your models here.
 class Medication(models.Model):
     id = models.AutoField(primary_key=True)
-    user  = models.ForeignKey('auth.User', on_delete=models.CASCADE)
+    user = models.ForeignKey("auth.User", on_delete=models.CASCADE)
     name = models.CharField(max_length=255)
     dosage = models.IntegerField()
     instructions = models.TextField()

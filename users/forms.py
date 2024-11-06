@@ -31,6 +31,11 @@ class UserRegistrationForm(forms.ModelForm):
         widget=forms.DateInput(attrs={"class": "form-control"}),
     )
 
+    health_card = forms.CharField(
+        label="Health Card",
+        widget=forms.TextInput(attrs={"class": "form-control"}),
+    )
+
     class Meta:
         model = User
         fields = (
