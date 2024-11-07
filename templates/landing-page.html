@@ -10,14 +10,25 @@
         <li><a class="register" href="{% url "users:register"%}">Register</a></li>
     </ul>
 </div>
-<section> 
+<section id="hero"> 
     <img class="hero-bg"src="{% static "media/landing-page/altos-baixos.svg"%}">
     <img class="idosos"src="{% static "media/landing-page/velhos-foto.svg" %}">
     <img class="mockup" src="{% static "media/landing-page/mockup-phone.svg"%}">
     <div class="hero">
-        <p class="hero-p">MEDDYBUDDY PILL MANAGEMENT SOFTWARE</p>
+        <p class="title-p">MEDDYBUDDY PILL MANAGEMENT SOFTWARE</p>
         <h1>The pillcare.<br>Everything conected.</h1>
         <p>Forward-thinking software for tomorrow's <br> elderly people.</p>
+    </div>
+</section>
+<section id="content">
+    <div id="content-text">
+        <p class="title-p">THE PILLCARE IN ALDEIA</p>
+        <h2> It's time to reinvent <br> homecare.</h2>
+        <p>In portuguese, aldeia means vilage. And we believe it takes an aldeia - where providers carers and families work seamlessly together - to deliver the person-centred, high quality homecare our changing society urgently needs.</p>
+        <a href={% url "users:register" %}>Find out more</a>
+    </div>
+    <div id="content-img">
+        <img id="content-img-1" src={% static "media/landing-page/content-img-1.png" %}>
     </div>
 </section>
 <div class="home">
