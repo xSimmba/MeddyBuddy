@@ -7,6 +7,7 @@ from django.views.generic.list import ListView
 from django.urls import reverse, reverse_lazy
 from django.http import Http404
 from django.shortcuts import render
+from django.contrib.auth.decorators import login_required
 
 
 def home(request):
@@ -43,6 +44,7 @@ class AddMedication(CreateView):
 
     def get_success_url(self):
         return reverse("medication:home")
+
 
 
 class MedicationListView(ListView):

@@ -8,6 +8,7 @@ from .views import (
     home,
 )
 
+
 app_name = "medication"
 
 urlpatterns = [

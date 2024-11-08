@@ -9,6 +9,8 @@ def home(request):
 
 
 def landing_page(request):
+    if request.user.is_authenticated:
+        return redirect("medication:home")
     return render(request, "landing-page.html")
 
 

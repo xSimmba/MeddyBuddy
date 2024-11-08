@@ -12,9 +12,10 @@
         <p>Instructions:</p>
         <a>{{ medication.instructions }}</a>
         <div class="meds-detail-btn">
-            <a class ="edit-btn" href="{% url 'medication:edit_medication' medication.id %}"><img src="{% static "media/edit_meds_btn.svg" %}" alt="Edit Button"></a>
-            <a class="delete-btn" href="{% url 'medication:delete_medication' medication.id %}"><img src="{% static "media/delete_meds.svg" %}" alt="Delete Button"></a>
+            <a class ="edit-btn" href="{% url 'medication:edit_medication' medication.id %}"><img class="edit-img" src="{% static "media/edit_meds_btn.svg" %}" alt="Edit Button"></a>
+            <a class="delete-btn" href="{% url 'medication:delete_medication' medication.id %}"><img class="delete-img" src="{% static "media/delete_meds.svg" %}" alt="Delete Button"></a>
         </div>
     </div>
 </div>
+<script src="{% static 'js/medication/medicationDetail.js' %}"></script>
 {% endblock %}

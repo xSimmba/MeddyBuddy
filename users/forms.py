@@ -13,6 +13,7 @@ class LoginForm(forms.Form):
 
     Both fields use Bootstrap's 'form-control' class for styling.
     """
+
     username = forms.CharField(
         label="Username",
         widget=forms.TextInput(attrs={"class": "form-control"}),
@@ -42,6 +43,7 @@ class UserRegistrationForm(forms.ModelForm):
     Methods:
         clean_password2(): Validates that the password and repeat password fields match. Raises a ValidationError if they do not.
     """
+
     password = forms.CharField(
         label="Password",
         widget=forms.PasswordInput(attrs={"class": "form-control"}),
@@ -67,6 +69,18 @@ class UserRegistrationForm(forms.ModelForm):
             "username",
             "email",
         )
+
+    def save(self, commit=True):
+        user = super(UserRegistrationForm, self).save(commit=False)
+        user.set_password(self.cleaned_data["password"])
+        user.save()
+        profile = Profile.objects.create(
+            id=user,
+            date_of_birth=self.cleaned_data["date_of_birth"],
+            health_card=self.cleaned_data["health_card"],
+        )
+        profile.save()
+        return user
 
     def clean_password2(self):
         cd = self.cleaned_data

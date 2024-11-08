@@ -6,6 +6,12 @@ authors = ["Your Name <you@example.com>"]
 license = "MIT"
 readme = "README.md"
 
+packages = [
+    { include = "./setup"},
+    { include = "./users"},
+    { include = "./medication"}
+]
+
 [tool.poetry.dependencies]
 python = "^3.12"
 django = "^5.1.2"

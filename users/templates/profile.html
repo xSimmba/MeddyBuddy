@@ -19,10 +19,10 @@
     <p class="field">{{ user.email }}</p>
     
     <div class="label">Date of birth:</div>
-    <p class="field">{{ user.date_of_birth|default:"Data de nascimento não informada" }}</p>
-    
+    <p class="field">{{ user.profile.date_of_birth|default:"Date of birth not informed" }}</p>
+
     <div class="label">Health card:</div>
-    <p class="field">{{ user.health_card|default:"Número do cartão de saúde não informado" }}</p>
+    <p class="field">{{ user.profile.health_card|default:"Health card not provided" }}</p>
 </div>
 
 <footer class="footer">
