@@ -1,13 +1,12 @@
 
+window.onload = () => {
     let EditImg = document.querySelector(".edit_meds_img");
     EditImg.onmouseover = () => {
-        EditImg.src = "/static/media/edit_meds_houver.svg";
-        console.log("hover")
+        EditImg.src = "/static/media/header/add-btn-hover.svg";
     };
     
     EditImg.onmouseout = () => {
-        EditImg.src = "/static/media/edit_meds.svg";
-        console.log("hover")
+        EditImg.src = "/static/media/header/add-btn.svg";
     };
 
     let ProfileImg = document.querySelector(".profile_img");
@@ -19,21 +18,11 @@
         console.log("hover")
     };
     
-    let ViewImg = document.querySelector(".view_meds_img");
-    ViewImg.onmouseover = () => {
-        ViewImg.src = "/static/media/view_meds_houver.svg";
+    let logout = document.querySelector(".logout-btn");
+    logout.onmouseover = () => {
+        logout.src = "/static/media/footer/logout-hover.svg";
     };
-    ViewImg.onmouseout = () => {
-        ViewImg.src = "/static/media/view_meds.svg";
-        console.log("hover")
+    logout.onmouseout = () => {
+        logout.src = "/static/media/footer/logout.svg";
     };
-
-    let AddImg = document.querySelector(".add-btn");
-    AddImg.onmouseover = () => {
-        AddImg.src = "/static/media/add_meds_over.svg";
-    };
-    AddImg.onmouseout = () => {
-        AddImg.src = "/static/media/add_meds.svg";
-        console.log("hover")
-    };
-
+}

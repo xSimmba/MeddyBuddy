@@ -1,7 +1,7 @@
 .add-cont{
     display: flex;
     justify-content: center;
-    margin-top: 3%;
+    
 }
 
 .container{
@@ -19,16 +19,19 @@ h1{
 #id_name {
     border: 2px solid #00796B;
     border-radius: 15px;
+    margin-top: 5px;
 }
 
 #id_dosage {
     border: 2px solid #00796B;
     border-radius: 15px;
+    margin-top: 5px;
 }
 
 #id_instructions {
     border: 2px solid #00796B;
     border-radius: 15px;
+    margin-top: 5px;
 }
 
 form {
@@ -59,3 +62,9 @@ input, textarea {
     border-radius: 3px;
     margin-bottom: 10px;
 }
+
+#plus{
+    margin-top: 2vh;
+    margin-left: -1vw;
+}
+

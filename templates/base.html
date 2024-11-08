@@ -8,25 +8,7 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 
-<header>
-    <nav class="navbar">
-        {% if user.is_authenticated %}
-            <a href={% url "users:profile"%} class="profile">
-                <img class="profile_img" src="{% static 'media/profile.svg' %}" alt="Profile">
-            </a>
-            <a href="{% url 'medication_list' %}" class="view_meds">
-                <img class="view_meds_img" src="{% static 'media/view_meds.svg' %}" alt="View Meds">
-            </a>
-            <a href="{% url 'add_medication' %}" class="edit_meds">
-                <img class="edit_meds_img" src="{% static 'media/edit_meds.svg' %}" alt="Add/Remove Meds">
-            </a>
-        {% else %}
-            
-            <a href="{% url 'users:login' %}" class="login">Login</a>
-            <a href="{% url 'users:register' %}" class="register">Create account</a>
-        {% endif %}
-    </nav>
-</header>
+
 
 <body class="{% if user.is_authenticated %} logged-in {% else %} logged-out {% endif %}">
         {% block content %}
@@ -38,7 +20,7 @@
             <a><img src="{% static 'media/footer/people_meddybuddy.svg' %}" alt="Family"></a>
             <a><img src="{% static 'media/footer/SOS_meddybuddy.svg' %}" alt="SOS"></a>
         </div>
-        <a href="{% url 'users:logout'%}">Logout</a>
+        <a class="logout" href="{% url 'users:logout'%}"><img class="logout-btn" src={%static "media/footer/logout.svg"%}></a>
     
         <p> &copy; 2024 MeddyBuddy</p>
     

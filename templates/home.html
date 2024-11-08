@@ -1,6 +1,40 @@
 {% extends "base.html" %}
 {% block content %}
-    
+{% load static %}
+
+
+<header>
+    <nav class="navbar">
+        {% if user.is_authenticated %}
+            <a href={% url "users:profile"%} class="profile">
+                <img class="profile_img" src="{% static 'media/header/profile.svg' %}" alt="Profile">
+            </a>
+            <a href="{% url 'medication:add_medication' %}" class="edit_meds">
+                <img class="edit_meds_img" src="{% static 'media/header/add-btn.svg' %}" alt="Add/Remove Meds">
+            </a>
+        {% endif %}
+    </nav>
+</header>
+
+
+<div class="meds-main">
+    {% for medication in medications %}
+    <div class="meds-container">
+        <div class="medication-box" 
+        data-medication-id="{{ medication.id }}">
+            <a class="icon-meds" href="{% url 'medication:medication_detail' medication.id %}"><img class="icon-meds-svg" src="{% static 'media/detail-meds/icon_meds.svg' %}" alt="icon Meds" ></a>
+            <div class="meds-info">
+                <a>Name: {{ medication.name }}</a>
+                <a>Dosage: {{ medication.dosage }}</a>
+            </div>
+            <img id="green" class="green-pill" src="{% static 'media/detail-meds/green_pill.svg' %}" alt="Green Pill" data-status="taken">
+            <img id="red" class="red-pill" src="{% static 'media/detail-meds/red_pill.svg' %}" alt="Red Pill" data-status="not_taken">
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+<script src="{% static 'js/medication/script.js' %}"></script>
 
 
 {% endblock %}
