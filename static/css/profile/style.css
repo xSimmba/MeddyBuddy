@@ -21,14 +21,25 @@
     align-items: center;
 }
 
-#person {
-    position: absolute;
-    top: 10vh;
-    left: 43vw;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+/* Adicionando estilo para o novo contêiner */
+/* Estilo para o contêiner onde a imagem "person" está */
+.person-container {
+    display: flex;               /* Ativa o Flexbox */
+    justify-content: center;     /* Alinha o conteúdo horizontalmente no centro */
+    align-items: center;         /* Alinha o conteúdo verticalmente no centro */
+    position: absolute;          /* Posiciona de forma absoluta na tela */
+    top: 15vh;                   /* Move a imagem um pouco mais para baixo (ajustar conforme necessário) */
+    left: 50%;                   /* Centraliza horizontalmente */
+    transform: translateX(-50%); /* Ajusta para que o contêiner fique centralizado */
 }
+
+/* Estilo para a imagem "person" */
+#person {
+    width: 200px; /* Aumenta o tamanho da imagem (ajuste conforme necessário) */
+    height: auto; /* Garante que a proporção da imagem seja mantida */
+}
+
+
 
 .profile {
     display: flex;
@@ -41,7 +52,7 @@
     position: absolute;
     top: 55%;  
     left: 50%; 
-    transform: translate(-50%, -50%); 
+    transform: translate(-50%, -50%);
     border-radius: 20px;
     padding: 20px;
 }
