@@ -2,7 +2,7 @@
 
 {% block content %}
 {% load static %}
-<link rel="stylesheet" href="{% static 'css/editmedication.css' %}">
+<link rel="stylesheet" href="{% static 'css/medication/editmedication.css' %}">
 <div class="edit-cont">    
     <div class="container">
         <h1>Edit Medication</h1>
@@ -10,7 +10,7 @@
             {% csrf_token %}
             {{ form.as_p }} 
             <button type="submit" class="btn btn-primary">Save</button>
-            <a href="{% url 'medication_list' %}" class="btn btn-secondary">Cancel</a>
+            <a href="{% url 'medication:home' %}" class="btn btn-secondary">Cancel</a>
         </form>
     </div>
 </div>    

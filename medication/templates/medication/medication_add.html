@@ -3,7 +3,9 @@
 
 {% block content %}
 {% load static %}
-<link rel="stylesheet" href="{% static 'css/addmedication.css' %}">
+<link rel="stylesheet" href="{% static 'css/medication/addmedication.css' %}">
+<a href="{% url 'medication:home' %}"><img id="back" src="{% static 'media/profile/back.svg' %}"></a>
+<a href="{% url 'medication:home' %}"><img id="plus" src="{% static 'media/header/add-btn-hover.svg' %}"></a>
 <div class="add-cont">
     <div class="container">
         <h1>Add Medication</h1>    
