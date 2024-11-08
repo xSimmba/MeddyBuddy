@@ -84,7 +84,7 @@ class DeleteMedication(DeleteView):
 
     model = Medication
     template_name = "medication/medication_delete.html"
-    success_url = reverse_lazy("medication_list")
+    success_url = reverse_lazy("medication:home")
 
     def get_object(self, queryset=None):
         obj = super().get_object(queryset=queryset)

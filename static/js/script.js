@@ -11,10 +11,10 @@ window.onload = () => {
 
     let ProfileImg = document.querySelector(".profile_img");
     ProfileImg.onmouseover = () => {
-        ProfileImg.src = "/static/media/profile_houver.svg";
+        ProfileImg.src = "/static/media/header/profile_houver.svg";
     };
     ProfileImg.onmouseout = () => {
-        ProfileImg.src = "/static/media/profile.svg";
+        ProfileImg.src = "/static/media/header/profile.svg";
         console.log("hover")
     };
     
