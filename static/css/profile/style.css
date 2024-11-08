@@ -1,9 +1,9 @@
-*{
+* {
     margin: 0;
     padding: 0;
 }
 
-#back{
+#back {
     position: absolute;
     top: 5vh;
     left: 0;
@@ -12,7 +12,7 @@
     align-items: center;
 }
 
-#profile{
+#profile {
     position: absolute;
     top: 2vh;
     left: 4vw;
@@ -21,24 +21,49 @@
     align-items: center;
 }
 
-#person{
+#person {
     position: absolute;
     top: 10vh;
     left: 43vw;
     display: flex;
     justify-content: center;
     align-items: center;
-
 }
 
-.profile{
+.profile {
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 400px;
+    height: 300px; 
     width: 400px;
     background-color: #d9d9d9;
     position: absolute;
-    margin: 38vh 39.5vw;
+    top: 55%;  
+    left: 50%; 
+    transform: translate(-50%, -50%); 
     border-radius: 20px;
+    padding: 20px;
 }
+
+
+.profile h1 {
+    font-size: 28px;
+    margin-bottom: 15px;
+}
+
+.profile p {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.profile .label {
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.profile .field {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+

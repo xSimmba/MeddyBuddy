@@ -3,30 +3,30 @@
 <link rel="stylesheet" href="{% static 'css/profile/style.css' %}">
 <link rel="stylesheet" href="{% static 'css/style.css' %}">
 
-
-<a href={% url "home" %}><img id="back" src={% static "media/profile/back.svg"%}></a>
-<a href={% url "home"%}><img id="profile" src={% static "media/profile/profile.svg"%}></a>
-<img id="person" src={% static "media/profile/person.svg"%}>
+<a href="{% url 'home' %}"><img id="back" src="{% static 'media/profile/back.svg' %}"></a>
+<a href="{% url 'home' %}"><img id="profile" src="{% static 'media/profile/profile.svg' %}"></a>
+<img id="person" src="{% static 'media/profile/person.svg' %}">
 
 <div class="profile">
-    <h1>{{ user.username }}</h1>
-    <p>{{ user.email }}</p>
-    <p>{{ user.date_of_birth }}</p>
-    <p>{{ user.health_card }}</p>
+    <h1>Profile {{ user.username }}</h1>
+    <div class="label">Name:</div>
+    <p class="field">{{ user.username }}</p>
+    
+    <div class="label">Email:</div>
+    <p class="field">{{ user.email }}</p>
+    
+    <div class="label">Date of birth:</div>
+    <p class="field">{{ user.date_of_birth|default:"Data de nascimento não informada" }}</p>
+    
+    <div class="label">Health card:</div>
+    <p class="field">{{ user.health_card|default:"Número do cartão de saúde não informado" }}</p>
 </div>
-
-
-
-
 
 <footer class="footer">
     <div class="images-footer">
         <a><img src="{% static 'media/footer/people_meddybuddy.svg' %}" alt="Family"></a>
         <a><img src="{% static 'media/footer/SOS_meddybuddy.svg' %}" alt="SOS"></a>
     </div>
-    <a href="{% url 'users:logout'%}">Logout</a>
-
-    <p> &copy; 2024 MeddyBuddy</p>
-
+    <a href="{% url 'users:logout' %}">Logout</a>
+    <p>&copy; 2024 MeddyBuddy</p>
 </footer>
-
