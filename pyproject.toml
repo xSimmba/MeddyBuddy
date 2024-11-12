@@ -17,6 +17,7 @@ python = "^3.12"
 django = "^5.1.2"
 psycopg2 = "^2.9.10"
 python-decouple = "^3.8"
+mongoengine = "^0.29.1"
 
 
 

@@ -2,18 +2,6 @@ from django import forms
 from .models import Medication
 
 class FormAddMedication(forms.ModelForm):
-    """
-    FormAddMedication is a ModelForm for adding a new Medication instance.
-    Attributes:
-        Meta:
-            model (Model): The model that this form is associated with.
-            fields (list): The fields to include in the form.
-    Methods:
-        __init__(self, *args, **kwargs):
-            Initializes the form, setting the 'user' field to the current user and hiding it.
-        get_form_kwargs(self):
-            Returns the keyword arguments for instantiating the form, including the request object.
-    """
     class Meta:
         model = Medication
         fields = ['name', 'dosage', 'instructions', 'user']

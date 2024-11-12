@@ -6,7 +6,7 @@
 <div id="register">
     <form method="post">
         {% csrf_token %}
-        <img id="background" src="{% static 'media/login.svg' %}" alt="Background">
+        <img class="Credits to SVGator" id="background" src="{% static 'media/login.svg' %}" alt="Background">
         <div class="wrapper">
             <h1>Create an account</h1>
 
@@ -24,7 +24,7 @@
                 <input type="text" name="health_card" placeholder="Health Card" value="{{form.health_card.value}}" required>
             </div>
             <div class="input-box">
-                <input type="password" name="password" placeholder="Password" value="{{form.password1.value}}" required>
+                <input type="password" name="password" placeholder="Password" value="{{form.password.value}}" required>
             </div>
             <div class="input-box">
                 <input type="password" name="password2" placeholder="Repeat your password" value="{{form.password2.value}}" required>

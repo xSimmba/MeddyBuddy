@@ -1,20 +1,19 @@
-from django.db import models
-from django.contrib.auth.models import User
+from mongoengine import Document, fields
+from django.contrib.auth.hashers import make_password, check_password
 
 
-class Profile(models.Model):
-    """
-    Profile model that extends the User model with additional user information.
+class Profile(Document):
 
-    Attributes:
-        id (OneToOneField): One-to-one relationship with the User model. Serves as the primary key.
-        care_giver (BooleanField): Indicates if the user is a caregiver. Defaults to False.
-        date_of_birth (DateField): The user's date of birth. Can be blank or null.
-        email (EmailField): The user's email address. Can be blank or null.
-        health_card (CharField): The user's health card information. Maximum length of 2000 characters. Can be blank or null.
-    """
-    id = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
-    care_giver = models.BooleanField(default=False)
-    date_of_birth = models.DateField(blank=True, null=True)
-    email = models.EmailField(blank=True, null=True)
-    health_card = models.CharField(max_length=2000, blank=True, null=True)
+    username = fields.StringField(max_length=150, required=True)
+    email = fields.EmailField(required=True)
+    password = fields.StringField(required=True, unique=True)
+    is_active = fields.BooleanField(default=True)
+    care_taker = fields.BooleanField(default=False)
+    health_card = fields.StringField(max_length=1000)
+    backend = "users.auth_backend.MongoEngineBackend"
+
+    def set_password(self, raw_password):
+        self.password = make_password(raw_password)
+
+    def check_password(self, raw_password):
+        return check_password(raw_password, self.password)

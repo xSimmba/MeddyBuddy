@@ -8,6 +8,9 @@ WORKDIR /app
 
 COPY . .
 
+ADD https://raw.githubusercontent.com/vishnubob/wait-for-it/master/wait-for-it.sh /usr/local/bin/wait-for-it.sh
+RUN chmod +x /usr/local/bin/wait-for-it.sh
+
 EXPOSE 8000
 
 RUN poetry install

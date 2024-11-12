@@ -4,13 +4,13 @@
 <link rel="stylesheet" href="{% static 'css/account/login.css' %}">
 
 <div id="login">
-    <img id="background" src={% static "media/login.svg"%}>
+    <img class="Credits to SVGator" id="background" src={% static "media/login.svg"%}>
     <form method="post">
 
     <div class="header">
         <img class="profile_img" src="{% static 'media/profile/profile.svg' %}" alt="Profile">
 
-      <h2>Welcome to MeddyBuddy !</h2>
+      <h2>Welcome to MeddyBuddy!</h2>
     </div>
     {% csrf_token %}
     

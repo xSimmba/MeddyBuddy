@@ -207,7 +207,7 @@ p{
 }
 
 .footer{
-    background-color: #0E2E44;
+    background-image: url(../../media/landing-page/footer-landingpage.svg);
     color: #ffffff;
     display: flex;
     align-items: center;
