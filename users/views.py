@@ -1,10 +1,35 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth import login, logout
-from django.http import HttpResponse
-from users.forms import LoginForm, UserRegistrationForm
-from users.models import Profile
-from mongoengine.errors import NotUniqueError
-from users.auth_backend import MongoEngineBackend
+from django.contrib.auth import authenticate, login, logout
+from django.http import HttpResponse, JsonResponse
+from users.forms import LoginForm, UserRegistrationForm, IsCareGiverForm
+from mongo.mongo import Mongo
+from rest_framework.request import Request
+from rest_framework.status import HTTP_200_OK, HTTP_404_NOT_FOUND, HTTP_400_BAD_REQUEST
+from rest_framework.views import APIView
+
+mongo = Mongo()
+
+
+class SetIsCaregiver(APIView):
+    def post(self, request: Request):
+        form = IsCareGiverForm(request.data)
+        if not form.is_valid():
+            return JsonResponse(
+                data={"error": "Invalid form data"}, status=HTTP_400_BAD_REQUEST
+            )
+        else:
+            user_id = request.data.get("id")
+            is_caregiver = request.data.get("care_giver")
+            mongo.set_user(user_id, is_caregiver)
+            user = mongo.get_user(user_id)
+            if user is None:
+                return JsonResponse(
+                    data={"error": "Sample not found"}, status=HTTP_404_NOT_FOUND
+                )
+            user["is_caregiver"] = True
+            mongo.update_user(user)
+            return HttpResponse(status=HTTP_200_OK)
+        
 
 
 def home(request):
@@ -22,24 +47,34 @@ def profile(request):
 
 
 def user_login(request):
+    """
+    Handle user login functionality.
+
+    This view handles both GET and POST requests for user login. If the request
+    method is POST, it processes the login form data. If the form is valid, it
+    authenticates the user with the provided username and password. If the user
+    is authenticated and active, they are logged in and redirected to the home
+    page. If the authentication fails, an "Invalid login" message is returned.
+    If the request method is GET, an empty login form is rendered.
+
+    Args:
+        request (HttpRequest): The HTTP request object.
+
+    Returns:
+        HttpResponse: The HTTP response object with the rendered login form or
+                      a redirect to the home page if login is successful.
+    """
     if request.method == "POST":
         form = LoginForm(request.POST)
         if form.is_valid():
             cd = form.cleaned_data
-            try:
-                user = Profile.objects.get(username=cd["username"])
-                if user.check_password(cd["password"]):
-                    if user.is_active:
-                        MongoEngineBackend().authenticate(
-                            request, username=cd["username"], password=cd["password"]
-                        )
-                        return redirect("users:landing_page")
-                    else:
-                        return HttpResponse("Disabled account")
-                else:
-                    return HttpResponse("Invalid login")
-            except Profile.DoesNotExist:
-                return HttpResponse("User does not exist")
+            user = authenticate(username=cd["username"], password=cd["password"])
+            if user is not None:
+                if user.is_active:
+                    login(request, user)
+                    return redirect("medication:home")
+            else:
+                return HttpResponse("Invalid login")
     else:
         form = LoginForm()
     return render(request, "registration/login.html", {"form": form})
@@ -59,45 +94,34 @@ def user_logout(request):
     return render(request, "landing-page.html")
 
 
-# def register(request):
-#     if request.method == "POST":
-#         form = UserRegistrationForm(request.POST)
-#         if form.is_valid():
-#             new_user = form.save()
-#             new_user.set_password(form.cleaned_data["password"])
-#             new_user.save()
-#             Profile.objects.create(user=new_user)
-#             return render(request, "landing-page.html")
-#         else:
-#             return HttpResponse("Invalid form")
-#     else:
-#         form = UserRegistrationForm()
-#     return render(request, "registration/register.html", {"user_form": form})
-
-
 def register(request):
+    """
+    Handle user registration.
+
+    This view handles the registration of a new user. If the request method is POST,
+    it processes the submitted registration form. If the form is valid, it creates
+    a new user, sets the user's password, and saves the user to the database.
+    It then renders the landing page. If the request method is not POST, it
+    displays an empty registration form.
+
+    Args:
+        request (HttpRequest): The HTTP request object.
+
+    Returns:
+        HttpResponse: The rendered registration form page or the landing page
+        upon successful registration.
+    """
     if request.method == "POST":
         form = UserRegistrationForm(request.POST)
         if form.is_valid():
-            username = form.cleaned_data["username"]
-            email = form.cleaned_data["email"]
-            password = form.cleaned_data["password"]
-            health_card = form.cleaned_data["health_card"]
+            form.clean_password2()
+            new_user = form.save(commit=False)
+            new_user.save()
+            return render(request, "landing-page.html")
 
-            try:
-                new_user = Profile(
-                    username=username,
-                    email=email,
-                    health_card=health_card,
-                    care_taker=False,
-                )
-                new_user.set_password(password)
-                new_user.save()
-                return render(request, "landing-page.html")
-            except:
-                return HttpResponse("Exception occurred")
         else:
-            return HttpResponse("Invalid form")
+            print(form.errors)
+            return HttpResponse(f"{form.errors}")
     else:
         form = UserRegistrationForm()
     return render(request, "registration/register.html", {"user_form": form})

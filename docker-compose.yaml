@@ -6,6 +6,11 @@ services:
     ports:
       - "8000:8000"
     environment:
+      POSTGRES_PASSWORD: password
+      POSTGRES_USER: user
+      POSTGRES_DB: db
+      POSTGRES_HOST: database
+      POSTGRES_PORT: 5432
       MONGO_DB_NAME: mongo
       MONGO_HOST: mongo
       MONGO_PORT: 27017
@@ -14,19 +19,44 @@ services:
       DJANGO_SECRET_KEY: mysecretkey
       DEBUG: "True"
     depends_on:
+      - database
       - mongo
+
     networks:
       - app-network
     command: >
-        bash -c "
-        /usr/local/bin/wait-for-it.sh mongo:27017 &&
-        /usr/local/bin/wait-for-it.sh mongo-express:8081 &&
-        python manage.py makemigrations &&
-        python manage.py migrate &&
-        python manage.py runserver 0.0.0.0:8000
-        "
-      
+      bash -c "
+      /usr/local/bin/wait-for-it.sh mongo:27017 &&
+      /usr/local/bin/wait-for-it.sh mongo-express:8081 &&
+      /usr/local/bin/wait-for-it.sh database:5432 &&
+      /usr/local/bin/wait-for-it.sh adminer:8080 &&
+      python manage.py makemigrations &&
+      python manage.py migrate &&
+      python manage.py runserver 0.0.0.0:8000
+      "
 
+  database:
+    image: postgres
+    restart: always
+    volumes:
+      - data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: password
+      POSTGRES_USER: user
+      POSTGRES_DB: db
+    networks:
+      - app-network
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - "5435:8080"
+    depends_on:
+      - database
+    networks:
+      - app-network
+  
   mongo:
     image: mongo:latest
     restart: always
@@ -57,9 +87,9 @@ services:
       - app-network
 
 volumes:
+  data:
   mongo_data:
 
 networks:
   app-network:
     driver: bridge
-

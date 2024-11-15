@@ -17,7 +17,9 @@ python = "^3.12"
 django = "^5.1.2"
 psycopg2 = "^2.9.10"
 python-decouple = "^3.8"
-mongoengine = "^0.29.1"
+pymongo = "^4.10.1"
+pydantic = "^2.9.2"
+djangorestframework = "^3.15.2"
 
 
 

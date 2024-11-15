@@ -1,5 +1,5 @@
 from django.urls import path
-from users.views import user_login, user_logout, register, profile, landing_page
+from .views import user_login, user_logout, register, profile, landing_page, SetIsCaregiver
 
 app_name = "users"
 
@@ -7,6 +7,7 @@ urlpatterns = [
     path("", landing_page, name="landing_page"),
     path("login/", user_login, name="login"),
     path("logout/", user_logout, name="logout"),
-    path("register/", register, name="register"),
+    path("register/", SetIsCaregiver.as_view(), name="register"),
+    path("register/user", register, name="register"),
     path("profile/", profile, name="profile"),
 ]
