@@ -6,3 +6,4 @@
 ./timeline/migrations/
 ./setup/__pycache__/
 
+.pyc
